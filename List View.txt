@@ -1,0 +1,43 @@
+using Android.App;
+using Android.Widget;
+using Android.OS;
+using System.Collections.Generic;
+
+namespace App1
+{
+    [Activity(Label = "App1", MainLauncher = true)]
+    public class MainActivity : Activity
+    {
+        // create a class that creates a list and stores data
+        private List<string> mItems;
+
+        //take the ListView from from the main.axml and initialise it 
+        private ListView myListView;
+
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            // important code i dont know for what
+            SetContentView(Resource.Layout.Main);
+
+            //this is where we instatntiate the list view from the mail.axml
+            myListView = FindViewById<ListView>(Resource.Id.myListView);
+
+            //we initialised the list that was created in the main main view and we added content to it
+            mItems = new List<string>();
+            mItems.Add("Bob");
+            mItems.Add("Tom");
+            mItems.Add("Jim");
+
+            //we make an array adaptor to add content from mList to myListview
+            ArrayAdapter<string> adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mItems);
+
+            //we finally adapted MylistView
+        
+            myListView.Adapter = adapter;
+
+
+
+        }
+    }
+}
